@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Title IX - SportCARE</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Plus+Jakarta+Sans:wght@500;700;800&display=swap" rel="stylesheet">
+<style>
+            /* Force Policy in Action cards in a row */
+            .section-head + .cards-3 {
+              display: flex !important;
+              flex-direction: row !important;
+              gap: 20px !important;
+              justify-content: center;
+              align-items: stretch;
+            }
+            .section-head + .cards-3 .card {
+              flex: 1 1 0;
+              min-width: 0;
+              max-width: 340px;
+            }
+          /* Add gap between Real Impact cards */
+          .cards-4 {
+            display: flex !important;
+            flex-direction: column !important;
+            gap: 28px !important;
+          }
+          .cards-4 > .card {
+            width: 100%;
+            margin-right: 0 !important;
+            padding: 18px 16px !important;
+          }
+        /* Real Impact section spacing and card height override */
+        .cards-4 {
+          gap: 28px !important;
+        }
+        .cards-4 > .card {
+          padding: 18px 16px !important;
+        }
+      #policy-framework .icon-wrap {
+        min-height: 56px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+    /* Force Policy Framework cards in a row */
+    #policy-framework .cards-3 {
+      display: flex;
+      flex-direction: row;
+      gap: 20px;
+      justify-content: center;
+      align-items: stretch;
+    }
+    #policy-framework .card {
+      flex: 1 1 0;
+      min-width: 0;
+      max-width: 340px;
+    }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --purple: #6B63E8;
+    --purple-light: #EEF0FF;
+    --purple-mid: #8B85F0;
+    --bg: #F7F7F8;
+    --white: #ffffff;
+    --dark: #141417;
+    --gray: #6B7280;
+    --gray-light: #9CA3AF;
+    --border: #E5E7EB;
+    --shadow: 0 2px 12px rgba(0,0,0,0.07);
+    --shadow-lg: 0 8px 32px rgba(0,0,0,0.10);
+    --title-font: 'Plus Jakarta Sans', sans-serif;
+    --body-font: 'DM Sans', sans-serif;
+  }
+  body { font-family: var(--body-font); color: var(--dark); background: var(--white); line-height: 1.6; }
+  nav {
+    position: sticky; top: 0; z-index: 100;
+    background: rgba(255,255,255,0.95);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid #E5E7EB;
+    padding: 0 48px;
+    display: flex; align-items: center; justify-content: space-between;
+    height: 64px;
+  }
+  .nav-logo { text-decoration: none; color: var(--dark); font-size: 20px; font-weight: 700; letter-spacing: -0.3px; }
+  .nav-logo span { color: var(--purple); }
+  .nav-links { list-style: none; display: flex; gap: 32px; }
+  .nav-links a { text-decoration: none; color: var(--gray); font-size: 14px; font-weight: 500; transition: color 0.2s; }
+  .nav-links a:hover { color: var(--dark); }
+  .nav-cta { text-decoration: none; background: var(--purple); color: #fff; padding: 10px 20px; border-radius: 999px; font-size: 14px; font-weight: 600; cursor: pointer; display: inline-block; transition: background 0.2s, transform 0.15s; }
+  .nav-cta:hover { background: #5750d4; transform: translateY(-1px); }
+  .page { max-width: 1160px; margin: 0 auto; padding: 0; }
+  h1, h2, h3 { font-family: var(--title-font); }
+  .hero {
+    display: grid;
+    grid-template-columns: 1fr 0.95fr;
+    gap: 30px;
+    align-items: center;
+    background: var(--white);
+    padding: 80px 48px 60px;
+    max-width: 1080px;
+    margin: 0 auto 72px auto;
+  }
+  .eyebrow {
+    display: inline-block;
+    margin-bottom: 18px;
+    padding: 7px 12px;
+    border-radius: 999px;
+    background: var(--purple-light);
+    color: var(--purple);
+    font-size: 13px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+  }
+  h1 { font-size: clamp(38px, 5vw, 60px); line-height: 1.12; margin-bottom: 24px; color: var(--dark); letter-spacing: -1px; font-family: var(--title-font); font-weight: 700; }
+  .hero p { color: #4B5563; font-size: 20px; margin-bottom: 18px; max-width: 600px; line-height: 1.7; }
+  .note {
+    padding: 14px 16px;
+    border-radius: 16px;
+    background: var(--warm);
+    border: 1px solid #eadfca;
+    color: #6f5a32;
+    font-size: 14px;
+    max-width: 620px;
+  }
+  .hero-card {
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: 28px;
+    padding: 28px;
+    box-shadow: var(--shadow);
+  }
+  .hero-card img { width: 100%; border-radius: 20px; display: block; margin-bottom: 20px; }
+  .hero-card h3 { font-size: 22px; margin-bottom: 10px; }
+  .hero-card p { color: var(--muted); font-size: 15px; }
+  section { padding: 90px 48px; background: #f2f4f8; }
+  section:nth-of-type(even) { background: var(--white); }
+  .section-head { max-width: 760px; margin: 0 auto 28px; text-align: center; }
+  .section-head h2 { font-size: clamp(26px, 3.2vw, 38px); font-weight: 700; line-height: 1.15; letter-spacing: -0.5px; margin-bottom: 12px; color: var(--dark); font-family: var(--title-font); }
+  .section-head p { color: var(--gray); font-size: 18px; margin-bottom: 52px; max-width: 580px; margin-left: auto; margin-right: auto; }
+  .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+  .card {
+    background: var(--white); border-radius: 18px;
+    border: 1px solid var(--border);
+    padding: 28px 24px;
+    box-shadow: var(--shadow);
+  }
+  .card h3 {
+    font-size: 22px; font-weight: 800; margin-bottom: 10px;
+    color: var(--dark); font-family: var(--title-font);
+  }
+  .card p {
+    font-size: 14px; color: var(--gray); line-height: 1.65;
+    margin-bottom: 12px;
+  }
+  .split {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    align-items: start;
+    max-width: 1080px;
+    margin: 0 auto;
+  }
+  .list {
+    list-style: none; display: flex; flex-direction: column; gap: 12px; margin-top: 18px;
+  }
+  .list li {
+    background: var(--bg); border: 1px solid var(--border); border-radius: 16px;
+    padding: 14px 16px; color: var(--dark); font-size: 15px;
+  }
+  .metric-band {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 14px;
+  }
+  .metric {
+    padding: 20px;
+    border-radius: 18px;
+    background: linear-gradient(180deg, #ffffff 0%, #f6f8fb 100%);
+    border: 1px solid var(--line);
+  }
+  .metric strong {
+    display: block;
+    font-family: var(--title-font);
+    color: var(--accent);
+    font-size: 28px;
+    margin-bottom: 8px;
+  }
+  .metric p { color: var(--muted); font-size: 13px; }
+  .cta {
+    padding: 32px;
+    border-radius: 26px;
+    background: linear-gradient(135deg, #073640 0%, #005f73 100%);
+    color: #fff;
+  }
+  .cta h2 { font-size: clamp(28px, 4vw, 40px); margin-bottom: 12px; }
+  .cta p { color: rgba(255,255,255,0.82); margin-bottom: 18px; max-width: 720px; }
+  .btn { display: inline-flex; align-items: center; justify-content: center; padding: 13px 20px; border-radius: 999px; text-decoration: none; font-size: 15px; font-weight: 700; background: var(--white); color: var(--dark); border: 1.5px solid var(--border); transition: border-color 0.2s, transform 0.15s; }
+  .btn-primary { background: var(--purple); color: white; border: none; }
+  .btn-primary:hover { background: #5750d4; transform: translateY(-2px); }
+  .btn-secondary { background: white; color: var(--dark); border: 1.5px solid var(--border); }
+  .btn-secondary:hover { border-color: var(--purple); transform: translateY(-2px); }
+  footer { background: var(--white); border-top: 1px solid var(--border); padding: 32px 48px; text-align: center; font-size: 16.5px; color: var(--gray-light); }
+  footer strong { color: var(--dark); }
+  footer span { color: var(--purple); }
+  @media (max-width: 900px) {
+    nav, .page, footer { padding-left: 20px; padding-right: 20px; }
+    .hero, .grid-3, .split, .metric-band { grid-template-columns: 1fr; }
+    .nav-links { display: none; }
+  }
+</style>
+</head>
+<body>
+<nav>
+  <a href="sportcare.html" class="nav-logo">Sport<span>CARE</span></a>
+  <ul class="nav-links">
+    <li><a href="programs.html">Programs</a></li>
+    <li><a href="title-ix.html">Title IX</a></li>
+    <li><a href="about.html">About</a></li>
+    <li><a href="sample-report.html">Sample Report</a></li>
+  </ul>
+  <a href="https://docs.google.com/forms/d/e/1FAIpQLSe6ULUEXrYFwA13otgjO9UnGVc8DDtoeWMnSiLxBCaCbMojJg/viewform" class="nav-cta" target="_blank" rel="noopener">Start Assessment →</a>
+</nav>
+
+<main class="page">
+  <!-- HERO SECTION -->
+  <section class="hero">
+    <div>
+      <span class="eyebrow">Title IX</span>
+      <h1>Advancing Athlete Wellness Through Title IX</h1>
+      <p>Expanding gender equity in sports beyond participation to include recovery, mental health, and long-term wellbeing.</p>
+      <div class="hero-ctas" style="margin-top:32px;display:flex;gap:16px;flex-wrap:wrap;">
+        <a href="#partnership" class="btn btn-primary">Partner With Us</a>
+      </div>
+    </div>
+    <div>
+      <img src="huddle.jpg" alt="Team huddle" style="width:100%;max-width:900px;height:420px;object-fit:cover;border-radius:32px;display:block;margin-bottom:20px;margin-left:auto;margin-right:auto;box-shadow:0 4px 24px rgba(107,99,232,0.10);">
+    </div>
+  </section>
+
+  <!-- THE GAP IN TITLE IX -->
+  <section style="padding-left:0;padding-right:0;background:#f2f4f8;width:100vw;position:relative;left:50%;right:50%;margin-left:-50vw;margin-right:-50vw;">
+    <div class="section-head">
+      <h2>The Gap in Title IX</h2>
+      <p>Title IX guarantees equal participation in sports. But participation alone doesn't ensure equal outcomes.</p>
+    </div>
+    <div class="split" style="margin-bottom:32px;">
+      <div class="card">
+        <h3>What Title IX Ensures</h3>
+        <ul class="list">
+          <li><span style="color:#22c55e;font-weight:700;">✓</span> Equal opportunity to participate</li>
+          <li><span style="color:#22c55e;font-weight:700;">✓</span> Equitable scholarship distribution</li>
+          <li><span style="color:#22c55e;font-weight:700;">✓</span> Comparable facilities and equipment</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>What's Still Missing</h3>
+        <ul class="list">
+          <li><span style="color:#ef4444;font-weight:700;">✗</span> Equal recovery support and injury care</li>
+          <li><span style="color:#ef4444;font-weight:700;">✗</span> Equitable mental health resources</li>
+          <li><span style="color:#ef4444;font-weight:700;">✗</span> Gender-specific wellness programming</li>
+          <li><span style="color:#ef4444;font-weight:700;">✗</span> Data-driven monitoring of athlete wellbeing</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- POLICY FRAMEWORK -->
+  <section id="policy-framework" style="padding-left:0;padding-right:0;background:#fff;width:100vw;position:relative;left:50%;right:50%;margin-left:-50vw;margin-right:-50vw;">
+    <div class="section-head">
+      <h2 style="white-space:nowrap;">SportCARE Athlete Wellness Policy Framework</h2>
+      <p>Three pillars for expanding equity beyond participation into the systems that actually determine athlete outcomes.</p>
+    </div>
+    <div class="cards-3">
+      <div class="card" style="text-align:center;">
+        <div class="icon-wrap" style="margin:0 auto 16px;">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#6B63E8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M9 12l2 2 4-4"/></svg>
+        </div>
+        <h3>Recovery & Injury Support Systems</h3>
+        <p>Structured protocols ensuring all athletes—regardless of gender—have equal access to injury prevention, treatment, and return-to-play resources.</p>
+      </div>
+      <div class="card" style="text-align:center;">
+        <div class="icon-wrap" style="margin:0 auto 16px;">
+          <img src="brain.png" alt="Brain icon" style="width:48px;height:48px;object-fit:contain;border-radius:12px;padding:4px;">
+        </div>
+        <h3 style="margin-top:0;">Mental Health Training for Athletes</h3>
+        <p>Proactive mental health education embedded into athletic programs, addressing anxiety, burnout, and the pressures unique to student-athletes.</p>
+      </div>
+      <div class="card" style="text-align:center;">
+        <div class="icon-wrap" style="margin:0 auto 16px;">
+              <img src="people.png" alt="People icon" style="width:48px;height:48px;object-fit:contain;margin-top:2px;">
+        </div>
+        <h3 style="margin-top:0;">Gender Equity in Wellness Resources</h3>
+        <p>Ensuring female athletes receive the same quality and quantity of recovery tools, mental health support, and training resources as their male counterparts.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- REAL IMPACT -->
+  <section style="padding-left:0;padding-right:0;background:#f2f4f8;width:100vw;position:relative;left:50%;right:50%;margin-left:-50vw;margin-right:-50vw;">
+    <div class="section-head">
+      <h2>Real Impact</h2>
+      <p style="white-space:nowrap;">SportCARE doesn't just identify problems—it builds the systems to solve them.</p>
+    </div>
+    <div style="max-width:1080px;margin:0 auto;">
+      <div class="cards-4">
+        <div class="card">
+          <h3>Collects Athlete Data</h3>
+          <p>Deploying the CARE survey to capture real experiences across recovery, training, and mental health.</p>
+        </div>
+        <div class="card">
+          <h3>Identifies Gaps</h3>
+          <p>Analyzing data to reveal disparities in resource access, support quality, and wellness outcomes.</p>
+        </div>
+        <div class="card">
+          <h3>Implements Training</h3>
+          <p>Delivering targeted workshops and tools that address identified inequities.</p>
+        </div>
+        <div class="card">
+          <h3>Proposes Policy Changes</h3>
+          <p>Translating findings into actionable recommendations for school administrators and athletic departments.</p>
+        </div>
+      </div>
+    </div>
+    <!-- Image removed from Real Impact section -->
+  </section>
+
+  <!-- POLICY IN ACTION -->
+  <section style="padding-left:0;padding-right:0;background:#fff;width:100vw;position:relative;left:50%;right:50%;margin-left:-50vw;margin-right:-50vw;">
+    <div class="section-head">
+      <h2>Policy in Action</h2>
+      <p>From school-level recommendations to systemic change.</p>
+    </div>
+    <div class="cards-3">
+      <div class="card" style="text-align:center;">
+        <div class="icon-wrap" style="margin:0 auto 16px;">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#6B63E8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M9 5H7a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2h-2"/>
+            <rect x="9" y="3" width="6" height="4" rx="1"/>
+            <path d="M9 14l2 2 4-4"/>
+          </svg>
+        </div>
+        <h3>School-Level Recommendations</h3>
+        <p>Actionable reports tailored to each school's athletic department with specific improvement targets.</p>
+      </div>
+      <div class="card" style="text-align:center;">
+        <div class="icon-wrap" style="margin:0 auto 16px;">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#6B63E8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/>
+            <polyline points="16 7 22 7 22 13"/>
+          </svg>
+        </div>
+        <h3>Pilot Programs</h3>
+        <p>Structured implementations that prove impact before scaling, building evidence for broader adoption.</p>
+      </div>
+      <div class="card" style="text-align:center;">
+        <div class="icon-wrap" style="margin:0 auto 16px;">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#6B63E8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="10"/>
+            <ellipse cx="12" cy="12" rx="4" ry="10"/>
+            <path d="M4 12h16"/>
+          </svg>
+        </div>
+        <h3>Long-Term Vision</h3>
+        <p>Working toward national standards that include athlete wellness as a core component of Title IX compliance.</p>
+      </div>
+    </div>
+    <div style="margin-top:32px;text-align:center;font-size:20px;font-weight:600;color:#005f73;">
+    </div>
+  </section>
+
+  <!-- EQUITY OUTCOMES SECTION -->
+  <section style="padding:64px 0 48px 0;background:#f2f4f8;width:100vw;position:relative;left:50%;right:50%;margin-left:-50vw;margin-right:-50vw;">
+    <div style="max-width:900px;margin:0 auto;text-align:center;padding:70px 24px 80px;">
+      <h2 style="font-family: 'Plus Jakarta Sans', sans-serif; font-size: clamp(32px, 5vw, 44px); font-weight: 800; color: #15171d; margin-bottom: 18px; line-height:1.13;">Equity isn't just about access.<br><span style="color:#6247d6;">It's about outcomes.</span></h2>
+      <p style="font-size: 19px; color: #6a7284; margin-bottom: 32px;">Partner with SportCARE to build athlete wellness systems that work for everyone.</p>
+      <div style="display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; margin-bottom: 0;">
+        <a href="https://docs.google.com/forms/d/e/1FAIpQLSe6ULUEXrYFwA13otgjO9UnGVc8DDtoeWMnSiLxBCaCbMojJg/viewform" class="btn btn-primary" style="font-weight:700; box-shadow:0 4px 14px rgba(98,71,214,0.18);">Start Assessment →</a>
+        <a href="#" class="btn btn-secondary" style="color:#6247d6; font-weight:700; border:1.5px solid #6247d6;">Partner With Us</a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer><strong>Sport<span>CARE</span></strong> — Athlete Experience Intelligence Platform</footer>
+</body>
+</html>

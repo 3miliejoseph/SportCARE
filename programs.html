@@ -1,0 +1,565 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Programs - SportCARE</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Plus+Jakarta+Sans:wght@500;700;800&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --ink: #141417;
+    --muted: #6B7280;
+    --line: #E5E7EB;
+    --bg: #F7F7F8;
+    --card: #ffffff;
+    --accent: #6B63E8;
+    --accent-soft: #EEF0FF;
+    --title-font: 'Plus Jakarta Sans', sans-serif;
+    --body-font: 'DM Sans', sans-serif;
+    --shadow: 0 2px 12px rgba(0,0,0,0.07);
+  }
+  body {
+    font-family: var(--body-font);
+    color: var(--ink);
+    background: #ffffff;
+    line-height: 1.6;
+  }
+  nav {
+    position: sticky; top: 0; z-index: 10;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 0 48px;
+    border-bottom: 1px solid #E5E7EB;
+    background: rgba(255,255,255,0.95);
+    backdrop-filter: blur(12px);
+    height: 64px;
+  }
+  .nav-logo {
+    text-decoration: none;
+    color: #141417;
+    font-size: 20px;
+    font-weight: 700;
+    letter-spacing: -0.3px;
+  }
+  .nav-logo span { color: #6B63E8; }
+  .nav-links { list-style: none; display: flex; gap: 32px; }
+  .nav-links a {
+    text-decoration: none;
+    color: #6B7280;
+    font-size: 14px;
+    font-weight: 500;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: #141417; }
+  .nav-cta {
+    text-decoration: none;
+    padding: 10px 20px;
+    border-radius: 999px;
+    background: #6B63E8;
+    color: #fff;
+    font-size: 14px;
+    font-weight: 600;
+    transition: background 0.2s, transform 0.15s;
+  }
+  .nav-cta:hover { background: #5750d4; transform: translateY(-1px); }
+  .page {
+    max-width: none;
+    margin: 0;
+    padding: 0;
+  }
+  .hero {
+    display: grid;
+    grid-template-columns: 1.05fr 0.95fr;
+    gap: 28px;
+    align-items: center;
+    max-width: 1080px;
+    margin: 0 auto;
+  }
+  .eyebrow {
+    display: inline-block;
+    margin-bottom: 18px;
+    padding: 7px 12px;
+    border-radius: 999px;
+    background: var(--accent-soft);
+    color: var(--accent);
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+  h1, h2, h3 { font-family: var(--title-font); }
+  h1 {
+    font-size: clamp(38px, 5vw, 60px);
+    line-height: 1.12;
+    letter-spacing: -1px;
+    margin-bottom: 18px;
+  }
+  .hero p {
+    color: var(--muted);
+    font-size: 18px;
+    max-width: 620px;
+    margin-bottom: 24px;
+  }
+  .hero-actions { display: flex; gap: 14px; flex-wrap: wrap; }
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 14px 28px;
+    border-radius: 999px;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 15px;
+    transition: background 0.2s, border-color 0.2s, transform 0.15s;
+  }
+  .btn-primary {
+    background: var(--accent);
+    color: #fff;
+    box-shadow: 0 4px 14px rgba(107,99,232,0.35);
+  }
+  .btn-primary:hover { background: #5750d4; transform: translateY(-2px); }
+  .btn-secondary {
+    background: #fff;
+    color: var(--ink);
+    border: 1.5px solid var(--line);
+  }
+  .btn-secondary:hover { border-color: var(--accent); transform: translateY(-2px); }
+  .btn-secondary-purple {
+    border-color: rgba(107, 99, 232, 0.75);
+    box-shadow: 0 0 0 2px rgba(107, 99, 232, 0.09), 0 0 14px rgba(107, 99, 232, 0.12);
+  }
+  .btn-secondary-purple:hover {
+    border-color: var(--accent);
+    box-shadow: 0 0 0 3px rgba(107, 99, 232, 0.13), 0 0 18px rgba(107, 99, 232, 0.16);
+  }
+  .hero-visual {
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 18px;
+    box-shadow: var(--shadow);
+    overflow: hidden;
+  }
+  .hero-visual img { width: 100%; height: 100%; min-height: 420px; object-fit: cover; display: block; }
+  section.hero {
+    padding: 80px 48px 60px;
+    background: #ffffff;
+  }
+  section:not(.hero):not(.cta) {
+    padding: 90px 48px;
+    background: #ffffff;
+  }
+  section:not(.hero):not(.cta):nth-of-type(even) {
+    background: #f2f4f8;
+  }
+  .section-head { max-width: 760px; margin: 0 auto 28px; text-align: center; }
+  .section-head h2 { font-size: clamp(26px, 3.2vw, 38px); line-height: 1.15; margin-bottom: 12px; }
+  .section-head p { color: var(--muted); font-size: 17px; text-align: center; }
+  .program-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+  }
+  .program-card {
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 18px;
+    padding: 28px;
+    box-shadow: var(--shadow);
+  }
+  .program-card .tag {
+    display: inline-block;
+    margin-bottom: 12px;
+    font-size: 12px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--accent);
+  }
+  .program-card h3 { font-size: 24px; margin-bottom: 10px; }
+  .program-card p { color: var(--muted); margin-bottom: 18px; }
+  .program-card ul { list-style: none; display: grid; gap: 10px; }
+  .program-card li {
+    color: var(--ink);
+    font-size: 15px;
+    padding-left: 18px;
+    position: relative;
+  }
+  .program-card li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 10px;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--accent);
+  }
+  .resource-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+    max-width: 1160px;
+    margin: 0 auto;
+  }
+  .resource-icon {
+    width: 44px;
+    height: 44px;
+    border-radius: 12px;
+    background: var(--accent-soft);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 14px;
+  }
+  .resource-icon img {
+    width: 34px;
+    height: 34px;
+    object-fit: contain;
+    filter: drop-shadow(0 1px 1px rgba(0,0,0,0.08));
+  }
+  .resource-grid .program-card h3 { font-size: 22px; }
+  .resource-grid .program-card p { font-size: 14px; }
+  .resource-points {
+    max-width: 1160px;
+    margin: 28px auto 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 22px;
+    color: var(--muted);
+    font-size: 15px;
+    font-weight: 600;
+    flex-wrap: wrap;
+  }
+  .resource-point {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .resource-sep {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 22px;
+    height: 22px;
+  }
+  .content-split {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+    align-items: start;
+    max-width: 1080px;
+    margin: 0 auto;
+  }
+  .guides-layout {
+    display: grid;
+    grid-template-columns: 0.9fr 1.1fr;
+    gap: 24px;
+    align-items: start;
+    max-width: 1080px;
+    margin: 0 auto;
+  }
+  .guides-image {
+    background: transparent;
+    border: none;
+    border-radius: 0;
+    box-shadow: none;
+    overflow: visible;
+    padding: 0;
+  }
+  .guides-image img {
+    display: block;
+    width: 100%;
+    height: auto;
+    max-height: 620px;
+    object-fit: contain;
+    border-radius: 16px;
+    margin-bottom: 20px;
+  }
+  .guides-stack {
+    display: grid;
+    gap: 36px;
+  }
+  .photo-caption {
+    margin-top: 12px;
+    text-align: center;
+    color: var(--muted);
+    font-size: 14px;
+  }
+  .timeline {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+    max-width: 1080px;
+    margin: 0 auto;
+  }
+  .page > section > .program-grid {
+    max-width: 1080px;
+    margin: 0 auto;
+  }
+  .timeline-step {
+    background: #fff;
+    border: 1px solid var(--line);
+    border-radius: 18px;
+    padding: 22px;
+    box-shadow: var(--shadow);
+  }
+  .timeline-step strong {
+    display: block;
+    font-family: var(--title-font);
+    color: var(--accent);
+    font-size: 24px;
+    margin-bottom: 12px;
+  }
+  .timeline-step h3 { font-size: 18px; margin-bottom: 8px; }
+  .timeline-step p { color: var(--muted); font-size: 14px; }
+  .steps-3 {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    max-width: 1080px;
+    margin: 0 auto;
+  }
+  .step-card {
+    background: #fff;
+    border: 1px solid var(--line);
+    border-radius: 18px;
+    padding: 28px 24px;
+    box-shadow: var(--shadow);
+  }
+  .step-number {
+    font-size: 36px;
+    font-weight: 700;
+    color: var(--accent-soft);
+    float: right;
+    line-height: 1;
+    margin-top: -4px;
+  }
+  .step-icon {
+    width: 50px;
+    height: 50px;
+    border-radius: 12px;
+    background: var(--accent-soft);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 16px;
+  }
+  .step-card h3 {
+    font-size: 22px;
+    font-weight: 800;
+    margin-bottom: 10px;
+    color: var(--ink);
+    font-family: var(--title-font);
+  }
+  .step-card p {
+    font-size: 14px;
+    color: var(--muted);
+    line-height: 1.65;
+    margin-bottom: 12px;
+  }
+  .step-highlight {
+    color: var(--accent);
+    font-weight: 600;
+    font-size: 14px;
+  }
+  .audience {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 18px;
+  }
+  .audience-card {
+    background: #fff;
+    border: 1px solid var(--line);
+    border-radius: 20px;
+    padding: 24px;
+  }
+  .audience-card h3 { font-size: 20px; margin-bottom: 10px; }
+  .audience-card p { color: var(--muted); font-size: 15px; }
+  .cta {
+    margin: 90px auto 56px;
+    max-width: 1080px;
+    padding: 96px 34px 64px 34px;
+    min-height: 340px;
+    border-radius: 20px;
+    background: var(--accent-soft);
+    border: 1px solid var(--line);
+    color: var(--ink);
+    text-align: center;
+  }
+  .cta h2 { font-size: clamp(26px, 3.2vw, 38px); line-height: 1.15; margin-bottom: 12px; }
+  .cta p { color: var(--muted); margin: 0 auto 20px; max-width: 620px; }
+  .cta .hero-actions { justify-content: center; }
+  footer {
+    background: #ffffff;
+    border-top: 1px solid #E5E7EB;
+    padding: 32px 48px;
+    text-align: center;
+    font-size: 16.5px;
+    color: #9CA3AF;
+  }
+  footer strong { color: #141417; }
+  footer span { color: #6B63E8; }
+  @media (max-width: 900px) {
+    nav, footer { padding-left: 20px; padding-right: 20px; }
+    section.hero { padding: 60px 20px 40px; }
+    section:not(.hero):not(.cta) { padding: 60px 20px; }
+    .cta { margin: 60px 20px 40px; }
+    .hero, .content-split, .guides-layout, .program-grid, .resource-grid, .timeline, .steps-3, .audience { grid-template-columns: 1fr; }
+    .resource-points { justify-content: flex-start; gap: 10px; }
+    .nav-links { display: none; }
+  }
+</style>
+</head>
+<body>
+<nav>
+  <a href="sportcare.html" class="nav-logo">Sport<span>CARE</span></a>
+  <ul class="nav-links">
+    <li><a href="programs.html">Programs</a></li>
+    <li><a href="title-ix.html">Title IX</a></li>
+    <li><a href="about.html">About</a></li>
+    <li><a href="sample-report.html">Sample Report</a></li>
+  </ul>
+  <a href="https://docs.google.com/forms/d/e/1FAIpQLSe6ULUEXrYFwA13otgjO9UnGVc8DDtoeWMnSiLxBCaCbMojJg/viewform" class="nav-cta" target="_blank" rel="noopener">Start Assessment →</a>
+</nav>
+
+<main class="page">
+  <section class="hero">
+    <div>
+      <span class="eyebrow">Programs</span>
+      <h1>Free Athlete Wellness Programs for Schools & Teams</h1>
+      <p>Access research-informed tools designed to improve athlete recovery, mental health, and team culture.</p>
+      <div class="hero-actions">
+        <a href="#" class="btn btn-primary">Explore the Library</a>
+        <a href="#" class="btn btn-secondary btn-secondary-purple">Download Training Guides</a>
+      </div>
+    </div>
+    <div class="hero-visual">
+      <img src="program.jpg" alt="Athlete wellness program visual">
+    </div>
+  </section>
+
+  <section>
+    <div class="section-head">
+      <h2>Digital Resource Library</h2>
+      <p style="white-space: nowrap;">A curated collection of research-backed resources designed for real athletes facing real challenges.</p>
+    </div>
+    <div class="resource-grid">
+      <article class="program-card">
+        <div class="resource-icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M9 12l2 2 4-4"/></svg>
+        </div>
+        <h3>Injury Recovery Guides</h3>
+        <p>Step-by-step protocols for safe return-to-play after common sports injuries.</p>
+      </article>
+      <article class="program-card">
+        <div class="resource-icon">
+          <img src="brain.png" alt="Brain icon" style="width:44px;height:44px;object-fit:contain;background:#EEF0FF;border-radius:12px;padding:4px;">
+        </div>
+        <h3>Mental Health Resources</h3>
+        <p>Tools for managing performance anxiety, burnout, and emotional wellbeing.</p>
+      </article>
+      <article class="program-card">
+        <div class="resource-icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+        </div>
+        <h3>Stress Management Techniques</h3>
+        <p>Breathing exercises, mindfulness practices, and recovery rituals for athletes.</p>
+      </article>
+      <article class="program-card">
+        <div class="resource-icon">
+          <img src="people.png" alt="">
+        </div>
+        <h3>Female Athlete-Specific Insights</h3>
+        <p>Resources addressing unique challenges female athletes face in training and recovery.</p>
+      </article>
+    </div>
+    <div class="resource-points">
+      <span class="resource-point"><span class="resource-sep" aria-hidden="true"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M8.5 12.5l2.5 2.5 4.5-5"/></svg></span><span>Research-backed</span></span>
+      <span class="resource-point"><span class="resource-sep" aria-hidden="true"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M8.5 12.5l2.5 2.5 4.5-5"/></svg></span><span>Easy to use</span></span>
+      <span class="resource-point"><span class="resource-sep" aria-hidden="true"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M8.5 12.5l2.5 2.5 4.5-5"/></svg></span><span>Designed for real athletes</span></span>
+    </div>
+  </section>
+
+  <section>
+    <div class="section-head">
+      <h2>Training Guides for Coaches & Teams</h2>
+      <p>Step-by-step training sessions built for team captains and coaches. Focus on injury recovery culture, mental health awareness, and team communication.</p>
+    </div>
+    <div class="guides-layout">
+      <div class="guides-image">
+        <img src="whiteboard.jpg" alt="Coach reviewing training materials with athletes">
+        <img src="injury.jpg" alt="Athlete recovering from injury" style="margin-bottom:20px;border-radius:16px;">
+        <img src="soccer.jpg" alt="Soccer team on field" style="border-radius:16px;">
+      </div>
+      <div class="guides-stack">
+        <article class="program-card">
+          <span class="tag">Workshop</span>
+          <h3>40-Minute Team Workshop</h3>
+          <p>A structured session on injury prevention and recovery culture that any coach can run.</p>
+        </article>
+        <article class="program-card">
+          <span class="tag">Protocol</span>
+          <h3>Post-Injury Support Protocol</h3>
+          <p>A communication and support framework for when athletes return from injury.</p>
+        </article>
+        <article class="program-card">
+          <span class="tag">Guide</span>
+          <h3>Mental Health Check-In Guide</h3>
+          <p>Weekly check-in templates that help captains and coaches monitor team wellbeing.</p>
+        </article>
+        <article class="program-card">
+          <span class="tag">Playbook</span>
+          <h3>Team Communication Playbook</h3>
+          <p>Exercises and frameworks to build trust, openness, and accountability.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="section-head">
+      <h2>How to Use These Programs</h2>
+      <p>Three simple steps to start improving athlete wellbeing today.</p>
+    </div>
+    <div class="steps-3" style="margin-top: 48px;">
+      <div class="step-card">
+        <span class="step-number">01</span>
+        <div class="step-icon">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="2" width="14" height="20" rx="2"/><line x1="12" y1="18" x2="12" y2="18"/></svg>
+        </div>
+        <h3>Access Resources</h3>
+        <p>Browse and download from our curated library of athlete wellness tools and guides.</p>
+      </div>
+      <div class="step-card">
+        <span class="step-number">02</span>
+        <div class="step-icon">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 5H7a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2h-2"/><rect x="9" y="3" width="6" height="4" rx="1"/><path d="M9 14l2 2 4-4"/></svg>
+        </div>
+        <h3>Run Team Training</h3>
+        <p>Use our step-by-step workshop formats to deliver impactful sessions with your team.</p>
+      </div>
+      <div class="step-card">
+        <span class="step-number">03</span>
+        <div class="step-icon">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/><polyline points="16 7 22 7 22 13"/></svg>
+        </div>
+        <h3>Track Improvement</h3>
+        <p>Monitor athlete wellbeing over time using our CARE assessment framework.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="cta">
+    <h2>Ready to build a healthier athletic program?</h2>
+    <p>Start with our free resources or take the full CARE assessment to identify what your team needs most.</p>
+    <div class="hero-actions">
+      <a href="https://docs.google.com/forms/d/e/1FAIpQLSe6ULUEXrYFwA13otgjO9UnGVc8DDtoeWMnSiLxBCaCbMojJg/viewform" class="btn btn-primary" target="_blank" rel="noopener">Start Assessment →</a>
+      <a href="sample-report.html" class="btn btn-secondary btn-secondary-purple">View Sample Report</a>
+    </div>
+  </section>
+</main>
+
+<footer><strong>Sport<span>CARE</span></strong> — Athlete Experience Intelligence Platform</footer>
+</body>
+</html>
